@@ -28,17 +28,30 @@ class Obstacle {
         let obstacleX = Math.floor(this.x + this.width / 2);
         let obstacleY = Math.floor(this.y + this.height / 2);
         // console.log("obstacle coor ", obstacleX, obstacleY)
+        // console.log('attack in Y distance: ', obstacleY);
         
-        let playerShotX = game.player.x;
-        let playerShotY = game.player.y;
-        console.log("Shoot coord ", playerShotX, playerShotY);
+        let playerShotX = playerInfo.x;
+        let playerShotY = playerInfo.y;
+        // console.log("Shoot coord ", "x: ",playerShotX, ", y: ", playerShotY);
         
+
+        let attackLine = Math.floor(this.y + this.height / 2);
+        console.log(attackLine);
+    
+        let hitCount = 0;
+        if( attackLine >= 600){
+            hitCount += 1;
+            // console.log("recibe daño. Hits: ", hitCount);
+            background('rgba(255,0,0, 0.20)');
+        }
+
         //player's coordinate with keyboard
-        let playerX = playerInfo.x + playerInfo.width / 2;
-        let playerY = playerInfo.y + playerInfo.height / 2;
+        // let playerX = playerInfo.x + playerInfo.width / 2;
+        // let playerY = playerInfo.y + playerInfo.height / 2;
         // console.log("obstacle coor ", playerX, playerY)
         
-        if (dist(obstacleX, obstacleY, playerX, playerY) > this.width / 2) {
+        if (dist(obstacleX, obstacleY, playerShotX, playerShotY) > this.width / 2) {
+            console.log('hit?')
             return false;
         } else {
             playerInfo.score += 100;
@@ -47,6 +60,14 @@ class Obstacle {
             return true;
         }
     }
+
+    attack() {
+        // let obstacleX = Math.floor(this.x + this.width / 2);
+      
+
+    }
+
+
 }
 
 

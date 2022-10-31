@@ -4,5 +4,6 @@ body {
     align-items: center;
     flex-direction: column;
     font-family: sans-serif;
-    background-color: darkseagreen;
+    color: #FFF;
+    background-color: #171e31;
 }

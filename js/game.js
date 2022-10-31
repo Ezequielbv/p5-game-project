@@ -30,7 +30,7 @@ class Game {
         this.player.draw();
 
         // console.log(frameCount)
-        if (frameCount % 50 === 0) {
+        if (frameCount % 100 === 0) {
             this.obstacles.push(new Obstacle(this.ghostImage))
         }
 

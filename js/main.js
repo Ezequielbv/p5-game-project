@@ -23,7 +23,7 @@ function draw() {
 function mousePressed() {
     game.player.shootCoorX();
     game.player.shootCoorY();
-    console.log("shooted", game.player.shootCoorX(), game.player.shootCoorY());
+    console.log("shooted", "x: ",game.player.shootCoorX(), ", y: ", game.player.shootCoorY());
 }
 
 
