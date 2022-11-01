@@ -7,7 +7,7 @@ function preload() {
 function setup() {
     createCanvas(WIDTH, HEIGHT)
     background("grey")
-    // noCursor();
+    noCursor();
 }
 
 function draw() {

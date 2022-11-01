@@ -7,3 +7,27 @@ body {
     color: #FFF;
     background-color: #171e31;
 }
+
+body.bgHit {
+    background-color: rgba(255,0,0, 0.20);
+}
+
+header {
+    text-align: right;
+    width: 80%;
+}
+
+#lives, #lives ul {
+    display: flex;
+    justify-content: end;
+    align-items: center;
+}
+
+#lives ul {
+    width: 10%;
+    list-style: none;
+    padding: 0;
+}
+#lives ul li {
+    padding: 2px;
+}

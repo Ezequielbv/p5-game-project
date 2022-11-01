@@ -28,30 +28,38 @@ class Game {
         clear()
         this.background.draw();
         this.player.draw();
-
         // console.log(frameCount)
-        if (frameCount % 100 === 0) {
+        if (frameCount % 50 === 0) {
             this.obstacles.push(new Obstacle(this.ghostImage))
+        } else if (game.player.score > 2 && frameCount % 30 === 0){ //increases number of ghosts summoning
+            this.obstacles.push(new Obstacle(this.ghostImage))  
         }
 
         this.obstacles.forEach(obstacle => {
             obstacle.draw();
-
         })
         
         this.obstacles = this.obstacles.filter(obstacle => {
-            if (obstacle.collision(this.player) || obstacle.x < -obstacle.width) {
-                return false
+            if (obstacle.collision(this.player)) {// + this.obstacles.height/2) { //if ghost is shot or went down the canvas
+                return false;
+            } else if (obstacle.y >= HEIGHT) {
+                obstacle.ghostHits();
+                return false;
             } else {
-                // this.ghostImage = this.ghostDeadImage;
-                return true
+                return true;
             }
-        })
-
-        if (this.player.score > 1000) {
+        });
+        
+        if (this.player.score > 10) {
             textSize(52)
             text("You won!!!!!! :D", 100, 100)
-            noLoop()
+            noLoop();
         }
     }
+
+    dissapear(a, b){
+        console.log(a,b);
+        image(this.ghostDeadImage, a, b, this.obstacles.width, this.obstacles.height);
+    }
+
 }
