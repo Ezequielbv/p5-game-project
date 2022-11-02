@@ -1,32 +1,28 @@
 class Obstacle {
     constructor(image) {
         this.image = image;
-        // this.ghostDeadImage;
-        this.x = 
-            // Math.floor(
-                (Math.random() * WIDTH)
-            // );
-        this.y = 
-            // Math.floor(
-                (Math.random() * HEIGHT) / 2
-            // );
+        this.x = (Math.random() * WIDTH)
+        this.y = (Math.random() * HEIGHT) / 2
+
         this.width = 25;
         this.height = 25;
 
         this.hitCount = 0;
-        // console.log(WIDTH, HEIGHT);
-        // console.log("coordinates",this.x, this.y)
+        this.deleteAt = Infinity;
     }
 
     draw() {
-        this.y += 4; //speed of the ghosts
+        // noLoop();
+        this.y += GHOSTSPEED; //speed of the ghosts
 
         if (game.player.score >= 4) { //increases the ghosts speed after 4 killed
-            this.y = this.y+5;
-        } else if (game.player.score >= 8) {
             this.y = this.y+6;
+            fadeLevelUp();
+        } else if (game.player.score >= 8) {
+            this.y = this.y+8;
+            fadeLevelUp();
         }
-
+        
         //moving towards the center
         if(this.x < WIDTH/2) {this.x = this.x+2;}
         if(this.x > WIDTH/2) {this.x = this.x-2;}
@@ -37,8 +33,8 @@ class Obstacle {
 
         image(this.image, this.x, this.y, this.width, this.height);
 
-        if (this.y + this.height / 2 >= HEIGHT) {
-            background('rgba(255,0,0, 0.20)');
+        if (this.y + this.height / 2 > HEIGHT && this.y + this.height / 2 < HEIGHT+10) {
+            background('rgba(255, 0, 0, 0.20)');
             // this.ghostHits();
         }
     }
@@ -58,27 +54,29 @@ class Obstacle {
         if (dist(obstacleX, obstacleY, playerShotX, playerShotY) > this.width / 2) {
             return false;
         } else {
-
-            game.dissapear(obstacleX, obstacleY);
-
             playerInfo.score += 1;
             playerInfo.x = 0;
             playerInfo.y = HEIGHT;
-
+            
             document.querySelector("#score span").innerText = playerInfo.score;
             return true;
         }
     }
 
     ghostHits() {
-        this.hitCount = 1;
-        console.log(this.hitCount)
+        // this.hitCount = 1;
+        // console.log(this.hitCount);
         let lives = document.querySelectorAll('#lives ul li');
-        if(lives.length > 0) {
+        if (lives.length > 1) {
             lives[lives.length-1].remove();
         } else {
-            textSize(52)
-            text("You LOOOSER :D", 100, 100)
+
+            lives[lives.length-1].remove();
+
+            // document.getElementById('reset').classList.remove('hidden');
+            
+            document.getElementById('lost-message').classList.remove('hidden');
+            // text("You lost! Press enter to try again", 100, 100)
             noLoop();
         }
     }

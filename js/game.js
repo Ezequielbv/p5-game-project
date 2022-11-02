@@ -13,7 +13,9 @@ class Game {
         this.backgroundImages = [
             { src: loadImage("../assets/background/plx-1.png"), x: 0, speed: 0 },
             { src: loadImage("../assets/background/plx-2.png"), x: 0, speed: 0.1 },
+            { src: loadImage("../assets/background/bg-fog1.png"), x: 0, speed: 0.2 },
             { src: loadImage("../assets/background/plx-3.png"), x: 0, speed: 0.2 },
+            { src: loadImage("../assets/background/bg-fog2.png"), x: 0, speed: 0.2 },
             { src: loadImage("../assets/background/plx-4.png"), x: 0, speed: 0.3 },
             { src: loadImage("../assets/background/plx-5.png"), x: 0, speed: 0.4 }
         ]
@@ -25,11 +27,12 @@ class Game {
     }
 
     draw() {
+        // noLoop();
         clear()
         this.background.draw();
         this.player.draw();
-        // console.log(frameCount)
-        if (frameCount % 50 === 0) {
+        
+        if (frameCount % GHOSTAMMOUNT === 0) {
             this.obstacles.push(new Obstacle(this.ghostImage))
         } else if (game.player.score > 2 && frameCount % 30 === 0){ //increases number of ghosts summoning
             this.obstacles.push(new Obstacle(this.ghostImage))  
@@ -39,27 +42,28 @@ class Game {
             obstacle.draw();
         })
         
+        this.obstacles.forEach((obstacle) => {
+            if (obstacle.collision(this.player)) {
+                obstacle.image = this.ghostDeadImage;
+                obstacle.deleteAt = frameCount + 10;
+            }
+        })
+
         this.obstacles = this.obstacles.filter(obstacle => {
-            if (obstacle.collision(this.player)) {// + this.obstacles.height/2) { //if ghost is shot or went down the canvas
+            if ( obstacle.deleteAt < frameCount ) {
                 return false;
-            } else if (obstacle.y >= HEIGHT) {
+            } else if (obstacle.y > HEIGHT) { // if ghost goes down line of the canvas
                 obstacle.ghostHits();
                 return false;
-            } else {
+            } else { //otherwise, the ghost stays in the array (is not filtered)
                 return true;
             }
-        });
+        })
         
         if (this.player.score > 10) {
-            textSize(52)
-            text("You won!!!!!! :D", 100, 100)
+            document.getElementById('win-message').classList.remove('hidden');
             noLoop();
         }
-    }
-
-    dissapear(a, b){
-        console.log(a,b);
-        image(this.ghostDeadImage, a, b, this.obstacles.width, this.obstacles.height);
     }
 
 }

@@ -1,15 +1,18 @@
+@import url('https://fonts.googleapis.com/css2?family=Poor+Story&display=swap');
+
 body {
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    font-family: sans-serif;
+    /* font-family: sans-serif; */
+    font-family: 'Poor Story', cursive;
     color: #FFF;
-    background-color: #171e31;
+    background-color: #000;
 }
 
-body.bgHit {
-    background-color: rgba(255,0,0, 0.20);
+.hidden, #messages .hidden {
+    display: none;
 }
 
 header {
@@ -17,17 +20,106 @@ header {
     width: 80%;
 }
 
-#lives, #lives ul {
+h2 {
+    margin: 0;
+}
+
+#score span{
+    font-size: 2em;
+    padding: 0 0 0 15px;
+}
+
+#lives, #lives ul, #no-lives, #no-lives ul {
     display: flex;
     justify-content: end;
     align-items: center;
+    margin: 0;
 }
 
-#lives ul {
+#lives ul, #no-lives ul{
+    position: absolute;
+    top: 70px;
     width: 10%;
-    list-style: none;
     padding: 0;
+    list-style: none;
+    color: #7e0000;
+    text-shadow: 3px 3px 5px black;
+    font-size: 2em;
+    transition: 1s;
 }
-#lives ul li {
+#lives ul li, #no-lives ul li {
     padding: 2px;
+}
+#lives ul {
+    z-index: 1;
+}
+#no-lives ul {
+    color: #3c2e2e;
+}
+
+#messages {
+    position: absolute;
+    top: 15%;
+    font-size: 2em;
+    text-shadow: 2px 2px 4px black;
+}
+#win-message {
+    color: rgb(255, 255, 166);
+}
+#lost-message {
+    padding: 10px 40px;
+    color: red;
+    background-color: #00000066;
+    border: 1px solid red;
+}
+#messages div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#levels h2 {
+    position: absolute;
+    font-size: 3em;
+    top: 15%;
+    color: rgb(255, 255, 166);
+    text-shadow: 2px 2px 4px black;
+
+    opacity: 1;
+    transition: opacity 0.5s;    
+
+    animation: shake 150ms 2 linear;
+    -moz-animation: shake 150ms 2 linear;
+    -webkit-animation: shake 150ms 2 linear;
+    -o-animation: shake 150ms 2 linear;
+}
+#levels h2.fade {
+    opacity: 0;
+}
+
+#reset {
+    position: absolute;
+    bottom: 250px;
+    padding: 5px 20px;
+    font-size: 1.8em;
+    color: white;
+    background-color: #344156;
+    border: 1px solid #7f0000;
+    border-radius: 2px;
+    cursor: pointer;
+    box-shadow: 5px 5px 5px #390000;
+    font-family: 'Poor Story', cursive;
+}
+
+
+@keyframes shake {
+    0% {
+      transform: translate(3px, 0);
+    }
+    50% {
+      transform: translate(-3px, 0);
+    }
+    100% {
+      transform: translate(0, 0);
+    }
 }
