@@ -34,7 +34,9 @@ class Game {
         
         if (frameCount % GHOSTAMMOUNT === 0) {
             this.obstacles.push(new Obstacle(this.ghostImage))
-        } else if (game.player.score > 2 && frameCount % 30 === 0){ //increases number of ghosts summoning
+        } else if ( game.player.score > 2 && game.player.score < 6 && frameCount % 30 === 0 ){ //increases number of ghosts summoning
+            this.obstacles.push(new Obstacle(this.ghostImage))  
+        } else if (game.player.score >= 6 && frameCount % 20 === 0){ //increases number of ghosts summoning
             this.obstacles.push(new Obstacle(this.ghostImage))  
         }
 
@@ -45,7 +47,7 @@ class Game {
         this.obstacles.forEach((obstacle) => {
             if (obstacle.collision(this.player)) {
                 obstacle.image = this.ghostDeadImage;
-                obstacle.deleteAt = frameCount + 10;
+                obstacle.deleteAt = frameCount + 8;
             }
         })
 
@@ -60,10 +62,9 @@ class Game {
             }
         })
         
-        if (this.player.score >= 10) {
+        if (this.player.score >= 15) {
             document.getElementById('win-message').classList.remove('hidden');
             noLoop();
         }
     }
-
 }

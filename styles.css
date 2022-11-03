@@ -16,14 +16,20 @@ body {
 }
 
 header {
-    text-align: right;
-    width: 80%;
+    /* text-align: right; */
+    width: 60%;
+    position: relative;
+    top: 580px;
+    display: flex;
+    justify-content: center;
 }
 
 h2 {
     margin: 0;
 }
-
+#score {
+    margin-right: 300px;
+}
 #score span{
     font-size: 2em;
     padding: 0 0 0 15px;
@@ -31,16 +37,16 @@ h2 {
 
 #lives, #lives ul, #no-lives, #no-lives ul {
     display: flex;
-    justify-content: end;
+    /* justify-content: end; */
     align-items: center;
-    margin: 0;
+    /* margin: 0; */
 }
 
 #lives ul, #no-lives ul{
     position: absolute;
-    top: 70px;
-    width: 10%;
-    padding: 0;
+    /* top: 70px;
+    width: 10%; */
+    padding: 0; 
     list-style: none;
     color: #7e0000;
     text-shadow: 3px 3px 5px black;
@@ -55,6 +61,31 @@ h2 {
 }
 #no-lives ul {
     color: #3c2e2e;
+}
+
+#start-message {
+    color: rgb(255, 255, 166);
+    height: 500px;
+    width: 1500px;
+    margin-top: -50px;
+    /* background-image: url("assets/background/plx-2.png"); */
+    background: center url("https://raw.githubusercontent.com/Ezequielbv/p5-game-project/master/assets/background/bg-start.gif");
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+.start-btn {
+    position: absolute;
+    padding:  20px 30px;
+    color: rgb(255, 255, 166);
+    border: 1px solid red;
+    font-size: 30px;
+    font-family:  'Poor Story', cursive;
+    background-color: #00000066;
+}
+
+.start-btn:hover {
+    background-color: #390000;
 }
 
 #messages {
