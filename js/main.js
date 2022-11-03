@@ -63,7 +63,6 @@ function keyPressed() {
       `;
     }
 
-    
     // reset frame
     frameCount = 0;
     

@@ -60,7 +60,7 @@ class Game {
             }
         })
         
-        if (this.player.score > 10) {
+        if (this.player.score >= 10) {
             document.getElementById('win-message').classList.remove('hidden');
             noLoop();
         }

@@ -16,10 +16,10 @@ class Obstacle {
         this.y += GHOSTSPEED; //speed of the ghosts
 
         if (game.player.score >= 4) { //increases the ghosts speed after 4 killed
-            this.y = this.y+6;
+            this.y = this.y+4;
             fadeLevelUp();
         } else if (game.player.score >= 8) {
-            this.y = this.y+8;
+            this.y = this.y+6;
             fadeLevelUp();
         }
         
@@ -64,19 +64,12 @@ class Obstacle {
     }
 
     ghostHits() {
-        // this.hitCount = 1;
-        // console.log(this.hitCount);
         let lives = document.querySelectorAll('#lives ul li');
         if (lives.length > 1) {
             lives[lives.length-1].remove();
         } else {
-
             lives[lives.length-1].remove();
-
-            // document.getElementById('reset').classList.remove('hidden');
-            
             document.getElementById('lost-message').classList.remove('hidden');
-            // text("You lost! Press enter to try again", 100, 100)
             noLoop();
         }
     }
