@@ -6,7 +6,15 @@ function preload() {
 }
 
 function setup() {
-  createCanvas(WIDTH, HEIGHT);
+  if(windowWidth < 550) {
+    let screenWith = WIDTH/3;
+    let screenHeight = screenWith/3;
+  } else {
+    screenWith = WIDTH;
+    screenHeight = screenWith/3;
+  }
+  createCanvas(screenWith, screenHeight);
+
   background(11,17,34);
   noCursor();
   btn = createButton('Click here to start the game');
