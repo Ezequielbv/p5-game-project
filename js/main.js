@@ -32,7 +32,6 @@ function updatemode() {
 function mousePressed() {
     game.player.shootCoorX();
     game.player.shootCoorY();
-    // console.log("shooted", "x: ",game.player.shootCoorX(), ", y: ", game.player.shootCoorY());
 }
 
 function keyPressed() {

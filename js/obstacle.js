@@ -12,10 +12,9 @@ class Obstacle {
     }
 
     draw() {
-        // noLoop();
         this.y += GHOSTSPEED; //speed of the ghosts
 
-        if (game.player.score >= 4) { //increases the ghosts speed after 4 killed
+        if (game.player.score >= 4 && game.player.score < 8) { //increases the ghosts speed after 4 killed
             this.y = this.y+4;
             fadeLevelUp();
         } else if (game.player.score >= 8) {
@@ -35,7 +34,6 @@ class Obstacle {
 
         if (this.y + this.height / 2 > HEIGHT && this.y + this.height / 2 < HEIGHT+10) {
             background('rgba(255, 0, 0, 0.20)');
-            // this.ghostHits();
         }
     }
 
@@ -45,12 +43,7 @@ class Obstacle {
 
         let playerShotX = playerInfo.x;
         let playerShotY = playerInfo.y;
-        
-        //player's coordinate with keyboard
-        // let playerX = playerInfo.x + playerInfo.width / 2;
-        // let playerY = playerInfo.y + playerInfo.height / 2;
-        // console.log("obstacle coor ", playerX, playerY)
-        
+
         if (dist(obstacleX, obstacleY, playerShotX, playerShotY) > this.width / 2) {
             return false;
         } else {
