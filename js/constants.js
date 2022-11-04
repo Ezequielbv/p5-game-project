@@ -1,4 +1,4 @@
 const WIDTH = 1500;
 const HEIGHT = WIDTH/3;
-const GHOSTSPEED = 4;
+const GHOSTSPEED = 2;
 const GHOSTAMMOUNT = 50; 

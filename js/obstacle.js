@@ -15,7 +15,7 @@ class Obstacle {
         this.y += GHOSTSPEED; //speed of the ghosts
 
         if (game.player.score >= 4 && game.player.score < 8) { //increases the ghosts speed after 4 killed
-            this.y = this.y+4;
+            this.y = this.y+3;
             fadeLevelUp();
         } else if (game.player.score >= 8) {
             this.y = this.y+6;
